@@ -42,5 +42,11 @@ function drawPaddle() {
     ctx.closePath()
 }
 
+function draw() {
+    drawBall()
+    drawPaddle()
+}
+
+draw()
 rulesBtn.addEventListener('click', (e) => rules.classList.add(('show')))
 closeBtn.addEventListener('click', (e) => rules.classList.remove(('show')))
