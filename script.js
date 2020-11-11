@@ -103,9 +103,23 @@ function movePaddle() {
     }
 }
 
+function moveBall() {
+    ball.x += ball.dx
+    ball.y += ball.dy
+
+    // Wall Bounce
+    if (ball.x + ball.size > canvas.width || ball.x - ball.size < 0) {
+        ball.dx *= -1
+    }
+    if (ball.y + ball.size > canvas.height || ball.y - ball.size < 0) {
+        ball.dy *= -1
+    }
+}
+
 // Update Canvas Drawing & Animation
 function update() {
     movePaddle()
+    moveBall()
 
     draw()
     requestAnimationFrame(update)
