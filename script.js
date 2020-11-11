@@ -78,6 +78,8 @@ function drawBricks() {
 }
 
 function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
     drawBall()
     drawPaddle()
     drawScore()
@@ -89,6 +91,41 @@ function drawScore() {
     ctx.fillText(`Score: ${score}`, canvas.width - 100, 30)
 }
 
-draw()
+function movePaddle() {
+    paddle.x += paddle.dx
+}
+
+// Update Canvas Drawing & Animation
+function update() {
+    movePaddle()
+
+    draw()
+    requestAnimationFrame(update)
+}
+
+update()
+
+function keyDown(e) {
+    if (e.key === 'Right' || e.key === 'ArrowRight') {
+        paddle.dx = paddle.speed;
+    } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+        paddle.dx = -paddle.speed;
+    }
+}
+  
+function keyUp(e) {
+    if (
+        e.key === 'Right' ||
+        e.key === 'ArrowRight' ||
+        e.key === 'Left' ||
+        e.key === 'ArrowLeft'
+    ) {
+        paddle.dx = 0;
+    }
+}
+
+document.addEventListener('keydown', keyDown)
+document.addEventListener('keyup', keyUp)
+
 rulesBtn.addEventListener('click', (e) => rules.classList.add(('show')))
 closeBtn.addEventListener('click', (e) => rules.classList.remove(('show')))
