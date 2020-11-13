@@ -142,6 +142,17 @@ function moveBall() {
 
 function increaseScore() {
     score++
+    if (score % (brickColumnCount * brickRowCount) === 0) {
+        showAllBricks()
+    }
+}
+
+function showAllBricks() {
+    bricks.forEach(column => {
+        column.forEach(brick => {
+            brick.visible = true
+        })
+    })
 }
 
 // Update Canvas Drawing & Animation
