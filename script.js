@@ -138,6 +138,12 @@ function moveBall() {
             }
         })
     })
+    
+     // Reset game when ball touches the ground
+     if (ball.y + ball.size > canvas.height) {
+        score = 0
+        showAllBricks()
+    }
 }
 
 function increaseScore() {
